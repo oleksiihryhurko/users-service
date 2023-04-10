@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgresql
+    environment:
+      - POSTGRES_USER=$POSTGRES_USERNAME
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DATABASE
+    ports:
+      - $POSTGRES_PORT:$POSTGRES_PORT
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    environment:
+      - RABBITMQ_DEFAULT_USER=$RABBITMQ_USERNAME
+      - RABBITMQ_DEFAULT_PASS=$RABBITMQ_PASSWORD
+    ports:
+      - $RABBITMQ_PORT:$RABBITMQ_PORT
+      - $RABBITMQ_UI_PORT:$RABBITMQ_UI_PORT
